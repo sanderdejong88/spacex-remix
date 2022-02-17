@@ -2,12 +2,12 @@ import { Link, Outlet, useLoaderData } from '@remix-run/react'
 import { getLaunches, Launch } from '~/spacex/launches'
 import { LoaderFunction } from 'remix'
 
-type LoaderDate = {
+type LoaderData = {
   launches: Launch[]
 }
 
 export const loader: LoaderFunction = async (): Promise<
-  Response | LoaderDate
+  Response | LoaderData
 > => {
   const launches = await getLaunches()
 
@@ -17,7 +17,7 @@ export const loader: LoaderFunction = async (): Promise<
 }
 
 export default function Index() {
-  const { launches } = useLoaderData<LoaderDate>()
+  const { launches } = useLoaderData<LoaderData>()
 
   return (
     <div className='grid grid-cols-5 gap-3'>
